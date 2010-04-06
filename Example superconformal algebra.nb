@@ -1,0 +1,1509 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 7.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     49793,       1500]
+NotebookOptionsPosition[     45126,       1350]
+NotebookOutlinePosition[     45594,       1370]
+CellTagsIndexPosition[     45551,       1367]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Examples of how to use Lambda", "Title",
+ CellChangeTimes->{{3.4797155565723743`*^9, 3.47971558431656*^9}}],
+
+Cell[TextData[{
+ "In this file, we give some simple examples of how to use Lambda.\nWe start \
+by demonstrating a realization of the $N=1$ superconformal algebra. We first \
+give the algebra in components, i.e. without using superfields. After this, \
+the algebra is written in $N=1$ superfield formalism.\n\nFirst, we must make \
+sure that the package is in a directory where ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " can find it, for example by adding AppendTo[$Path, \"pathtolambda\"] in \
+the initialization file $UserBaseDirectory/Kernel/init.m . After this, we can \
+load the package Lambda:"
+}], "Text",
+ CellChangeTimes->{{3.4796390180119*^9, 3.4796390351041403`*^9}, {
+   3.479639100613402*^9, 3.479639125259128*^9}, {3.4796400051723547`*^9, 
+   3.479640198606846*^9}, {3.479708794712922*^9, 3.479708914899585*^9}, {
+   3.4797139618606253`*^9, 3.479713997063066*^9}, {3.479715605695224*^9, 
+   3.479715669302742*^9}, 3.47971621615121*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"<<", " ", "Lambda.m"}], ";"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Lambda: A Mathematica-package for operator product \
+expansions in vertex algebras.\"\>"], "Print",
+ CellChangeTimes->{3.492921148505437*^9}],
+
+Cell[BoxData["\<\"Copyright 2010 Joel Ekstrand\"\>"], "Print",
+ CellChangeTimes->{3.49292114850718*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell["We start without superfields, and write", "Text",
+ CellChangeTimes->{{3.479638973949937*^9, 3.479638981838625*^9}, {
+  3.4796402607380133`*^9, 3.4796402997214127`*^9}, {3.479708745622448*^9, 
+  3.479708759847733*^9}, {3.479708928596324*^9, 3.4797089454686747`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetSUSY", "[", "False", "]"}], ";"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["N=1 Superconformal algebra", "Subtitle",
+ CellChangeTimes->{{3.479715709017709*^9, 3.479715712359795*^9}}],
+
+Cell["\<\
+Let \[Gamma] and \[Beta] be even fields. We define this with the following \
+code:\
+\>", "Text",
+ CellChangeTimes->{{3.47964033115441*^9, 3.479640501814413*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Grading", "[", 
+    RowBox[{"Field", "[", 
+     RowBox[{"\[Gamma]", ",", " ", "___"}], "]"}], "]"}], " ", ":=", " ", 
+   "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Grading", "[", 
+    RowBox[{"Field", "[", 
+     RowBox[{"\[Beta]", ",", " ", "___"}], "]"}], "]"}], " ", ":=", " ", 
+   "0"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.479640418275329*^9, 3.479640418621646*^9}, {
+  3.479640511664711*^9, 3.479640531330415*^9}, {3.47964207267797*^9, 
+  3.4796420738883553`*^9}, {3.479642530301869*^9, 3.479642557278309*^9}, {
+  3.479716457948679*^9, 3.479716491317452*^9}}],
+
+Cell[TextData[{
+ "A field is written with the command Field. The first argument is the symbol \
+of the field, the second is a list of the lower indices that the field \
+carries, the third is the upper indices, and the fourth can be used as target \
+space derivatives on the field. A field is denoted with a hat over it, and \
+the package recognize any symbol with a hat as a field. As an example, \
+consider the field ",
+ Cell[BoxData[
+  SuperscriptBox[
+   OverscriptBox["\[Gamma]", "^"], "i"]],
+  CellChangeTimes->{{3.479714431934671*^9, 3.479714436534994*^9}}],
+ ". It has one upper index, and can be written as"
+}], "Text",
+ CellChangeTimes->{{3.4797140692969513`*^9, 3.4797142831164627`*^9}, {
+  3.479714335071199*^9, 3.479714415783805*^9}, {3.479714566093458*^9, 
+  3.479714607933485*^9}, {3.47972545629348*^9, 3.479725456380405*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Field", "[", 
+  RowBox[{"\[Gamma]", ",", 
+   RowBox[{"{", "}"}], ",", 
+   RowBox[{"{", "i", "}"}], ",", 
+   RowBox[{"{", "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.4797144263548117`*^9, 3.4797144361223927`*^9}, {
+  3.479725459378957*^9, 3.4797254594821243`*^9}}],
+
+Cell[BoxData[
+ SuperscriptBox[
+  OverscriptBox["\[Gamma]", "^"], "i"]], "Output",
+ CellChangeTimes->{3.492921148691215*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " also recognize this form as input. "
+}], "Text",
+ CellChangeTimes->{{3.4797144455525427`*^9, 3.479714514282283*^9}, {
+  3.4797146179802856`*^9, 3.479714618740961*^9}, {3.479723067261112*^9, 
+  3.4797230708445597`*^9}}],
+
+Cell["\<\
+We want our field to have the brackets 
+[\[Beta],\[Gamma]]=\[HBar] \[Delta] ,      [\[Gamma], \[Gamma]]=0  ,   [\
+\[Beta], \[Beta]]=0  .
+In order for the package to know that the symbol \[HBar] is not a field, it \
+needs to be declared to be NumericQ:\
+\>", "Text",
+ CellChangeTimes->{{3.47964053838015*^9, 3.4796406425545073`*^9}, {
+  3.47964141897617*^9, 3.479641467633643*^9}, {3.479641506618289*^9, 
+  3.4796415101934423`*^9}, {3.479643846410057*^9, 3.479643902272884*^9}, {
+  3.4796668324287024`*^9, 3.479666833935924*^9}, {3.479708977030591*^9, 
+  3.4797089780217648`*^9}, {3.4797092800933933`*^9, 3.479709291358218*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"NumericQ", "[", "\[HBar]", "]"}], " ", ":=", " ", "True"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.479708960158786*^9, 3.479708961342437*^9}}],
+
+Cell["\<\
+There is a predefined even delta field with symbol \[Delta] in the package. \
+The bracket is then specified by\
+\>", "Text",
+ CellChangeTimes->{{3.479643909617343*^9, 3.4796439272400503`*^9}, {
+  3.479704029817354*^9, 3.479704045408815*^9}, {3.4797089961022243`*^9, 
+  3.47970900839846*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"LambdaBracket", "[", " ", 
+     RowBox[{
+      RowBox[{"Field", "[", 
+       RowBox[{"\[Beta]", ",", 
+        RowBox[{"{", "a_", "}"}], ",", 
+        RowBox[{"{", "}"}], ",", 
+        RowBox[{"{", "}"}]}], "]"}], ",", 
+      RowBox[{"Field", "[", 
+       RowBox[{"\[Gamma]", ",", 
+        RowBox[{"{", "}"}], ",", 
+        RowBox[{"{", "b_", "}"}], ",", 
+        RowBox[{"{", "}"}]}], "]"}]}], "]"}], " ", ":=", 
+    RowBox[{"\[HBar]", "*", 
+     RowBox[{"Field", "[", 
+      RowBox[{"\[Delta]", ",", 
+       RowBox[{"{", "a", "}"}], ",", 
+       RowBox[{"{", "b", "}"}], ",", 
+       RowBox[{"{", "}"}]}], "]"}]}]}], " ", ";"}], " "}]], "Input",
+ CellChangeTimes->{{3.479641137002405*^9, 3.4796411381070433`*^9}, {
+  3.4796412093568583`*^9, 3.4796412097294283`*^9}}],
+
+Cell["\<\
+This only defines the bracket in this specific order. To define the other \
+order of the bracket, we need\
+\>", "Text",
+ CellChangeTimes->{{3.4796414771752357`*^9, 3.479641545850528*^9}, {
+   3.47964393391037*^9, 3.479643947952713*^9}, 3.47972449205945*^9, {
+   3.479727864202613*^9, 3.479727868310575*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"LambdaBracket", "[", " ", 
+    RowBox[{
+     RowBox[{"Field", "[", 
+      RowBox[{"\[Gamma]", ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "a_", "}"}], ",", 
+       RowBox[{"{", "}"}]}], "]"}], ",", 
+     RowBox[{"Field", "[", 
+      RowBox[{"\[Beta]", ",", 
+       RowBox[{"{", "b_", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}]}], "]"}]}], "]"}], " ", ":=", 
+   RowBox[{"LambdaBracketChangeOrder", "[", " ", 
+    RowBox[{
+     RowBox[{"Field", "[", 
+      RowBox[{"\[Gamma]", ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "a", "}"}], ",", 
+       RowBox[{"{", "}"}]}], "]"}], ",", " ", 
+     RowBox[{"Field", "[", 
+      RowBox[{"\[Beta]", ",", 
+       RowBox[{"{", "b", "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}]}], "]"}]}], "]"}]}], " ", ";"}]], "Input",
+ PageWidth->600,
+ CellChangeTimes->{
+  3.479641746427557*^9, {3.479666844501225*^9, 3.479666846151697*^9}}],
+
+Cell["The other two brackets are given by", "Text",
+ CellChangeTimes->{{3.479642791006311*^9, 3.479642797364067*^9}, 
+   3.47964402331489*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"LambdaBracket", "[", " ", 
+     RowBox[{
+      RowBox[{"Field", "[", 
+       RowBox[{"\[Beta]", ",", "___"}], "]"}], ",", 
+      RowBox[{"Field", "[", 
+       RowBox[{"\[Beta]", ",", "___"}], "]"}]}], "]"}], " ", ":=", " ", "0"}],
+    " ", ";"}], " "}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"LambdaBracket", "[", " ", 
+     RowBox[{
+      RowBox[{"Field", "[", 
+       RowBox[{"\[Gamma]", ",", "___"}], "]"}], ",", 
+      RowBox[{"Field", "[", 
+       RowBox[{"\[Gamma]", ",", "___"}], "]"}]}], "]"}], " ", ":=", " ", 
+    "0"}], " ", ";"}], " "}]}], "Input",
+ CellChangeTimes->{{3.4796428249363422`*^9, 3.479642825324131*^9}}],
+
+Cell["\<\
+Now, these fields are a so called  \[Beta]\[Gamma] - system. \
+\>", "Text",
+ CellChangeTimes->{{3.479668550258884*^9, 3.479668563832809*^9}, {
+   3.479709322302183*^9, 3.4797093874241953`*^9}, 3.479709433104456*^9}],
+
+Cell["We can define a Virasoro field Lbos by", "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Lbos", " ", "=", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     SubscriptBox[
+      OverscriptBox["\[Beta]", "^"], "i"], "\[SmallCircle]", 
+     RowBox[{"\[Square]", 
+      SuperscriptBox[
+       OverscriptBox["\[Gamma]", "^"], "i"]}]}], ")"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.479725546943017*^9, 3.4797255495490217`*^9}}],
+
+Cell["\<\
+The circle \[SmallCircle] denotes normal ordering, and the square \[Square] \
+is the (even) derivative \[PartialD]. The bracket of this field with itself  \
+is calculated by\
+\>", "Text",
+ CellChangeTimes->{{3.479668579697839*^9, 3.479668594688675*^9}, {
+  3.4797147122534018`*^9, 3.4797147606487207`*^9}, {3.479724740835232*^9, 
+  3.479724741849268*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[LeftAngleBracket]", 
+  RowBox[{"Lbos", ",", "Lbos"}], "\[RightAngleBracket]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   FractionBox["1", "6"], " ", "dim", " ", 
+   SuperscriptBox["\[Lambda]", "3"], " ", 
+   SuperscriptBox["\[HBar]", "2"]}], "+", 
+  RowBox[{"2", " ", "\[Lambda]", " ", "\[HBar]", " ", 
+   RowBox[{"(", 
+    SubscriptBox[
+     OverscriptBox["\[Beta]", "^"], "\[Alpha]"], "\[SmallCircle]", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["\[Gamma]", "^"], "\[Alpha]"]}], ")"}]}], "+", 
+  RowBox[{"\[HBar]", " ", 
+   RowBox[{"(", 
+    SubscriptBox[
+     OverscriptBox["\[Beta]", "^"], "\[Alpha]"], "\[SmallCircle]", 
+    RowBox[{"\[Square]", 
+     RowBox[{"\[Square]", 
+      SuperscriptBox[
+       OverscriptBox["\[Gamma]", "^"], "\[Alpha]"]}]}], ")"}]}], "+", 
+  RowBox[{"\[HBar]", " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SubscriptBox[
+      OverscriptBox["\[Beta]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["\[Gamma]", "^"], "\[Alpha]"]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.492921148976029*^9}]
+}, Open  ]],
+
+Cell["\<\
+The derivatives of this expression can be collected using CD (an alias for \
+CollectDerivatives):\
+\>", "Text",
+ CellChangeTimes->{{3.4796686419371767`*^9, 3.4796687045317173`*^9}, 
+   3.479724770026198*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"%", "//", "CD"}]], "Input",
+ CellChangeTimes->{{3.479668717365582*^9, 3.479668718325695*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   FractionBox["1", "6"], " ", "dim", " ", 
+   SuperscriptBox["\[Lambda]", "3"], " ", 
+   SuperscriptBox["\[HBar]", "2"]}], "+", 
+  RowBox[{"2", " ", "\[Lambda]", " ", "\[HBar]", " ", 
+   RowBox[{"(", 
+    SubscriptBox[
+     OverscriptBox["\[Beta]", "^"], "\[Alpha]"], "\[SmallCircle]", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["\[Gamma]", "^"], "\[Alpha]"]}], ")"}]}], "+", 
+  RowBox[{"\[HBar]", " ", 
+   RowBox[{"\[Square]", 
+    RowBox[{"(", 
+     SubscriptBox[
+      OverscriptBox["\[Beta]", "^"], "\[Alpha]"], "\[SmallCircle]", 
+     RowBox[{"\[Square]", 
+      SuperscriptBox[
+       OverscriptBox["\[Gamma]", "^"], "\[Alpha]"]}], ")"}]}]}]}]], "Output",
+ CellChangeTimes->{3.492921149010086*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "This shows that Lbos satisfy the Virasoro algebra, with central charge c=2 \
+dim, ie \n[Lbos, Lbos]=(2\[Lambda]+\[PartialD])Lbos+c  \[Lambda]^3 /12 .\nThe \
+variable dim is equal to ",
+ Cell[BoxData[
+  SubsuperscriptBox[
+   OverscriptBox["\[Delta]", "^"], "a", "a"]],
+  CellChangeTimes->{{3.479703971853325*^9, 3.479703979172344*^9}}],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.479668750961204*^9, 3.4796688171042347`*^9}, {
+  3.479704080642188*^9, 3.479704156555097*^9}, {3.4797042008454533`*^9, 
+  3.479704262790165*^9}, {3.47970452012446*^9, 3.479704690473053*^9}, {
+  3.4797056644032784`*^9, 3.479705664496737*^9}}],
+
+Cell["\<\
+We now define two odd fields, b and c, with the brackets [b, \
+c]=\[Delta],[b,b]=0,[c,c]=0, i.e. in total a  \[Beta]\[Gamma]-bc-system. 
+This is implemented in a similar way as above. The basic fields, \[Beta],\
+\[Gamma],b and c  are pre-defined, along with their brackets,  in the file \
+basicfields.m (included in the distribution of Lambda), which we now load:\
+\>", "Text",
+ CellChangeTimes->{{3.479642914239408*^9, 3.479642914463604*^9}, {
+   3.479642948185419*^9, 3.479642985263414*^9}, {3.479643379947887*^9, 
+   3.479643410381531*^9}, {3.4796644830306396`*^9, 3.479664484216441*^9}, {
+   3.479668848953285*^9, 3.479668899100522*^9}, {3.4796689473694773`*^9, 
+   3.479668985139619*^9}, {3.479704290736862*^9, 3.47970430516717*^9}, {
+   3.4797090725274343`*^9, 3.479709126073813*^9}, 3.479726219313631*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"<<", " ", "basicfields.m"}], ";"}]], "Input",
+ CellChangeTimes->{{3.4796433415399113`*^9, 3.479643343738158*^9}}],
+
+Cell["\<\
+Of course, this file could have been loaded directly, and the above \
+definitions are only included in order to show the basic syntax.
+To make the calculations less cluttered, we set \[HBar]=1.\
+\>", "Text",
+ CellChangeTimes->{{3.479643428584696*^9, 3.479643449357074*^9}, 
+   3.479643631030303*^9, {3.479664527101851*^9, 3.479664551040475*^9}, {
+   3.479666775477119*^9, 3.4796667803950787`*^9}, {3.479666894463193*^9, 
+   3.479666894864217*^9}, {3.479666983586046*^9, 3.479666987079561*^9}, {
+   3.479667097353685*^9, 3.479667131616374*^9}, {3.479668476074053*^9, 
+   3.479668488839938*^9}, {3.479668910947991*^9, 3.479668932659226*^9}, {
+   3.479668998404464*^9, 3.479669024838089*^9}, {3.479709453932276*^9, 
+   3.479709477284184*^9}, 3.479716555798003*^9, 3.479725661446212*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[HBar]", "=", "1"}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.479709392107092*^9, {3.479709523710799*^9, 3.4797095334467487`*^9}, {
+   3.479709712561932*^9, 3.4797097249236403`*^9}}],
+
+Cell["We can define another Virasoro field Lferm by", "Text"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Lferm", " ", "=", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Square]", 
+        SubscriptBox[
+         OverscriptBox["b", "^"], "i"]}], "\[SmallCircle]", 
+       SuperscriptBox[
+        OverscriptBox["c", "^"], "i"]}], "+", 
+      RowBox[{
+       RowBox[{"\[Square]", 
+        SuperscriptBox[
+         OverscriptBox["c", "^"], "i"]}], "\[SmallCircle]", 
+       SubscriptBox[
+        OverscriptBox["b", "^"], "i"]}]}], ")"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.479714867488736*^9, 3.479714910661831*^9}, {
+  3.479715042519108*^9, 3.479715046371841*^9}, {3.479715120997636*^9, 
+  3.479715131540556*^9}, {3.479725682074234*^9, 3.479725694728579*^9}}],
+
+Cell["The bracket is", "Text",
+ CellChangeTimes->{{3.479669052447825*^9, 3.4796690646580973`*^9}, {
+  3.479725773242679*^9, 3.479725774024819*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[LeftAngleBracket]", 
+  RowBox[{"Lferm", ",", "Lferm"}], "\[RightAngleBracket]"}]], "Input",
+ CellChangeTimes->{
+  3.479669084425969*^9, 3.4796691194736023`*^9, {3.4797150637793903`*^9, 
+   3.479715077035699*^9}, {3.4797151147571774`*^9, 3.479715134851878*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox[
+   RowBox[{"dim", " ", 
+    SuperscriptBox["\[Lambda]", "3"]}], "12"], "+", 
+  RowBox[{
+   FractionBox["1", "4"], " ", 
+   SuperscriptBox["\[Lambda]", "2"], " ", 
+   RowBox[{"(", 
+    SubscriptBox[
+     OverscriptBox["b", "^"], "\[Alpha]"], "\[SmallCircle]", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "\[Alpha]"], ")"}]}], "+", 
+  RowBox[{
+   FractionBox["1", "4"], " ", 
+   SuperscriptBox["\[Lambda]", "2"], " ", 
+   RowBox[{"(", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "\[Alpha]"], "\[SmallCircle]", 
+    SubscriptBox[
+     OverscriptBox["b", "^"], "\[Alpha]"], ")"}]}], "+", 
+  RowBox[{"\[Lambda]", " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SubscriptBox[
+      OverscriptBox["b", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "\[Alpha]"], ")"}]}], "+", 
+  RowBox[{
+   FractionBox["1", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SubscriptBox[
+      OverscriptBox["b", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["c", "^"], "\[Alpha]"]}], ")"}]}], "+", 
+  RowBox[{"\[Lambda]", " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["c", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+    SubscriptBox[
+     OverscriptBox["b", "^"], "\[Alpha]"], ")"}]}], "+", 
+  RowBox[{
+   FractionBox["1", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["c", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+    RowBox[{"\[Square]", 
+     SubscriptBox[
+      OverscriptBox["b", "^"], "\[Alpha]"]}], ")"}]}], "+", 
+  RowBox[{
+   FractionBox["1", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     RowBox[{"\[Square]", 
+      SubscriptBox[
+       OverscriptBox["b", "^"], "\[Alpha]"]}]}], "\[SmallCircle]", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "\[Alpha]"], ")"}]}], "+", 
+  RowBox[{
+   FractionBox["1", "2"], " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     RowBox[{"\[Square]", 
+      SuperscriptBox[
+       OverscriptBox["c", "^"], "\[Alpha]"]}]}], "\[SmallCircle]", 
+    SubscriptBox[
+     OverscriptBox["b", "^"], "\[Alpha]"], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.492921149206555*^9}]
+}, Open  ]],
+
+Cell["\<\
+In order to read off the algebra, some reordering is needed. Let us change \
+the order in the second term using NormalOrderChangeOrder (with alias NOCO) , \
+and collect the derivatives with CD: \
+\>", "Text",
+ CellChangeTimes->{{3.4796690675497227`*^9, 3.479669069975822*^9}, {
+   3.479669107940014*^9, 3.479669152295968*^9}, 3.479704440787971*^9, {
+   3.4797045010694036`*^9, 3.47970450388363*^9}, {3.479704712515633*^9, 
+   3.479704830700107*^9}, {3.4797049118483067`*^9, 3.47970491404608*^9}, {
+   3.479709168145425*^9, 3.479709174963194*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[LeftAngleBracket]", 
+    RowBox[{"Lferm", ",", "Lferm"}], "\[RightAngleBracket]"}], "//", 
+   RowBox[{
+    RowBox[{"MapAt", "[", 
+     RowBox[{"NOCO", ",", "#", ",", "2"}], "]"}], "&"}]}], "//", 
+  "CD"}]], "Input",
+ CellChangeTimes->{{3.479704764269465*^9, 3.479704769211177*^9}, {
+  3.479704805366259*^9, 3.47970480550992*^9}, {3.4797048391097183`*^9, 
+  3.479704899440858*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox[
+   RowBox[{"dim", " ", 
+    SuperscriptBox["\[Lambda]", "3"]}], "12"], "+", 
+  RowBox[{"\[Lambda]", " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SubscriptBox[
+      OverscriptBox["b", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "\[Alpha]"], ")"}]}], "+", 
+  RowBox[{"\[Lambda]", " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["c", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+    SubscriptBox[
+     OverscriptBox["b", "^"], "\[Alpha]"], ")"}]}], "+", 
+  RowBox[{
+   FractionBox["1", "2"], " ", 
+   RowBox[{"\[Square]", 
+    RowBox[{"(", 
+     RowBox[{"\[Square]", 
+      SubscriptBox[
+       OverscriptBox["b", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+     SuperscriptBox[
+      OverscriptBox["c", "^"], "\[Alpha]"], ")"}]}]}], "+", 
+  RowBox[{
+   FractionBox["1", "2"], " ", 
+   RowBox[{"\[Square]", 
+    RowBox[{"(", 
+     RowBox[{"\[Square]", 
+      SuperscriptBox[
+       OverscriptBox["c", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+     SubscriptBox[
+      OverscriptBox["b", "^"], "\[Alpha]"], ")"}]}]}]}]], "Output",
+ CellChangeTimes->{3.492921149330463*^9}]
+}, Open  ]],
+
+Cell["\<\
+The Virasoro algebra is now apparent, and the central charge is c=dim.
+Since the two Virasoro fields commute:\
+\>", "Text",
+ CellChangeTimes->{{3.479704930325551*^9, 3.4797050662098637`*^9}, {
+  3.4797051058206053`*^9, 3.479705142091689*^9}, {3.479709188531246*^9, 
+  3.479709194643067*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[LeftAngleBracket]", 
+  RowBox[{"Lferm", ",", "Lbos"}], "\[RightAngleBracket]"}]], "Input",
+ CellChangeTimes->{3.479705098629299*^9}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.492921149364884*^9}]
+}, Open  ]],
+
+Cell["they can be combined  into one Virasoro field :", "Text",
+ CellChangeTimes->{{3.479705145163746*^9, 3.479705160563991*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"L", " ", "=", " ", 
+   RowBox[{"Lferm", " ", "+", " ", "Lbos"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.478958179627309*^9, 3.478958184115635*^9}, 
+   3.47896046242136*^9, 3.478960498818266*^9}],
+
+Cell["\<\
+The field L fulfills the Virasoro algebra with central charge c=3 dim. Let us \
+define an odd field G by\
+\>", "Text",
+ CellChangeTimes->{{3.479705241976972*^9, 3.479705273518754*^9}, {
+  3.479705624783844*^9, 3.479705654360509*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"G", " ", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox[
+       OverscriptBox["c", "^"], "i"], "\[SmallCircle]", 
+      SubscriptBox[
+       OverscriptBox["\[Beta]", "^"], "i"]}], ")"}], "+", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"\[Square]", 
+       SuperscriptBox[
+        OverscriptBox["\[Gamma]", "^"], "i"]}], "\[SmallCircle]", 
+      SubscriptBox[
+       OverscriptBox["b", "^"], "i"]}], ")"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.4789604498505077`*^9, 3.4789604572915382`*^9}, {
+  3.478960510511689*^9, 3.478960512782247*^9}, {3.491638215188774*^9, 
+  3.491638226297038*^9}}],
+
+Cell["This field has conformal weight 3/2 with respect to L", "Text",
+ CellChangeTimes->{{3.4797052960428963`*^9, 3.479705330650304*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[LeftAngleBracket]", 
+    RowBox[{"L", ",", "G"}], "\[RightAngleBracket]"}], "//", "CD"}], "//", 
+  RowBox[{
+   RowBox[{"Collect", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"{", "\[Lambda]", " ", "}"}], ",", "Simplify"}], "]"}], 
+   "&"}]}]], "Input",
+ CellChangeTimes->{{3.479726384053087*^9, 3.479726386497816*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   FractionBox["3", "2"], " ", "\[Lambda]", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"(", 
+      SuperscriptBox[
+       OverscriptBox["c", "^"], "\[Alpha]"], "\[SmallCircle]", 
+      SubscriptBox[
+       OverscriptBox["\[Beta]", "^"], "\[Alpha]"], ")"}], "+", 
+     RowBox[{"(", 
+      RowBox[{"\[Square]", 
+       SuperscriptBox[
+        OverscriptBox["\[Gamma]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+      SubscriptBox[
+       OverscriptBox["b", "^"], "\[Alpha]"], ")"}]}], ")"}]}], "+", 
+  RowBox[{"\[Square]", 
+   RowBox[{"(", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "\[Alpha]"], "\[SmallCircle]", 
+    SubscriptBox[
+     OverscriptBox["\[Beta]", "^"], "\[Alpha]"], ")"}]}], "+", 
+  RowBox[{"\[Square]", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["\[Gamma]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+    SubscriptBox[
+     OverscriptBox["b", "^"], "\[Alpha]"], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.492921149464745*^9}]
+}, Open  ]],
+
+Cell["and [G, G] is", "Text",
+ CellChangeTimes->{{3.479705353352385*^9, 3.479705363066251*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[LeftAngleBracket]", 
+   RowBox[{"G", ",", "G"}], "\[RightAngleBracket]"}], "//", 
+  RowBox[{
+   RowBox[{"SortExpression", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"{", 
+      RowBox[{"b", ",", "c", ",", "\[Beta]", ",", "\[Gamma]"}], "}"}]}], 
+    "]"}], "&"}]}]], "Input",
+ CellChangeTimes->{{3.479705522408452*^9, 3.479705536833991*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"dim", " ", 
+   SuperscriptBox["\[Lambda]", "2"]}], "-", 
+  RowBox[{"(", 
+   SubscriptBox[
+    OverscriptBox["b", "^"], "\[Alpha]"], "\[SmallCircle]", 
+   RowBox[{"\[Square]", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "\[Alpha]"]}], ")"}], "+", 
+  RowBox[{"2", " ", 
+   RowBox[{"(", 
+    SubscriptBox[
+     OverscriptBox["\[Beta]", "^"], "\[Alpha]"], "\[SmallCircle]", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["\[Gamma]", "^"], "\[Alpha]"]}], ")"}]}], "+", 
+  RowBox[{"(", 
+   RowBox[{"\[Square]", 
+    SubscriptBox[
+     OverscriptBox["b", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+   SuperscriptBox[
+    OverscriptBox["c", "^"], "\[Alpha]"], ")"}]}]], "Output",
+ CellChangeTimes->{3.492921149560875*^9}]
+}, Open  ]],
+
+Cell["\<\
+where we have sorted the expression. Let us compare this with
+[G, G]=2 L+ dim \[Lambda]^2/3 .
+We sort the expression, and rename the dummy indices in a canonical way, \
+using
+MakeDummyIndiciesCanonical (with alias MDIC):\
+\>", "Text",
+ CellChangeTimes->{{3.4797054907876263`*^9, 3.479705502261639*^9}, {
+   3.479705542455863*^9, 3.4797055971908817`*^9}, {3.479705688987204*^9, 
+   3.479705781820096*^9}, {3.4797092197400293`*^9, 3.479709243883191*^9}, {
+   3.479709579165296*^9, 3.4797095810291243`*^9}, 3.479727654571392*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"2", " ", "L"}], " ", "+", " ", 
+     RowBox[{"3", "*", " ", "dim", " ", 
+      RowBox[{
+       SuperscriptBox["\[Lambda]", "2"], " ", "/", "3"}]}]}], "//", 
+    RowBox[{
+     RowBox[{"SortExpression", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"{", "}"}]}], "]"}], "&"}]}], "//", "MDIC"}], "//", 
+  "Expand"}]], "Input",
+ CellChangeTimes->{{3.4797057497498198`*^9, 3.479705755804796*^9}, {
+  3.479709586524806*^9, 3.47970958897488*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"dim", " ", 
+   SuperscriptBox["\[Lambda]", "2"]}], "-", 
+  RowBox[{"(", 
+   SubscriptBox[
+    OverscriptBox["b", "^"], "\[Alpha]"], "\[SmallCircle]", 
+   RowBox[{"\[Square]", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "\[Alpha]"]}], ")"}], "+", 
+  RowBox[{"2", " ", 
+   RowBox[{"(", 
+    SubscriptBox[
+     OverscriptBox["\[Beta]", "^"], "\[Alpha]"], "\[SmallCircle]", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["\[Gamma]", "^"], "\[Alpha]"]}], ")"}]}], "+", 
+  RowBox[{"(", 
+   RowBox[{"\[Square]", 
+    SubscriptBox[
+     OverscriptBox["b", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+   SuperscriptBox[
+    OverscriptBox["c", "^"], "\[Alpha]"], ")"}]}]], "Output",
+ CellChangeTimes->{3.4929211496768*^9}]
+}, Open  ]],
+
+Cell["\<\
+We see that we have the N = 1 algebra. We now want to write this algebra in \
+superfields. \
+\>", "Text",
+ CellChangeTimes->{{3.47970579124868*^9, 3.479705800229436*^9}, {
+  3.4797066335315723`*^9, 3.479706666866152*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetSUSY", "[", "True", "]"}], ";"}]], "Input"],
+
+Cell["\<\
+Let us combine the  \[Beta]\[Gamma]-bc-system into two superfields. One even, \
+\[CapitalPhi]=\[Gamma] + \[Theta]c, and one odd, S= b + \[Theta]\[Beta], with \
+the brackets\
+\>", "Text",
+ CellChangeTimes->{{3.4797066859151506`*^9, 3.479706743476027*^9}, {
+  3.479706830585372*^9, 3.479706923777051*^9}}],
+
+Cell["\<\
+[S, \[CapitalPhi]] =  \[Delta] ,      [\[CapitalPhi], \[CapitalPhi]] = 0  ,   \
+[S, S] = 0 .\
+\>", "Text",
+ CellChangeTimes->{{3.479706761256935*^9, 3.479706786927691*^9}, 
+   3.47971479241821*^9}],
+
+Cell["The components are defined by DefineComponents:", "Text",
+ CellChangeTimes->{{3.479706973799296*^9, 3.479706985107328*^9}, {
+  3.479707674459724*^9, 3.479707676499955*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"DefineComponents", "[", 
+   RowBox[{"S", ",", " ", "b", ",", "\[Beta]"}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"DefineComponents", "[", 
+   RowBox[{"\[CapitalPhi]", ",", " ", "\[Gamma]", ",", "c"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.479706996157606*^9, 3.479707011587545*^9}}],
+
+Cell["\<\
+The brackets and the gradings are defined as above. All the definitions are \
+in the file basicfields.m.\
+\>", "Text",
+ CellChangeTimes->{{3.479707020319419*^9, 3.4797070671404953`*^9}, {
+  3.47970768370091*^9, 3.479707688997674*^9}}],
+
+Cell["The Virasoro field are now given by", "Text",
+ CellChangeTimes->{{3.479706871827066*^9, 3.4797068786235523`*^9}, 
+   3.479706929968753*^9, {3.479706986996524*^9, 3.479706988636672*^9}, {
+   3.4797071015279016`*^9, 3.4797071089493933`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"P", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"\[Square]", 
+      SuperscriptBox[
+       OverscriptBox["\[CapitalPhi]", "^"], "i"]}], "\[SmallCircle]", 
+     SubscriptBox[
+      OverscriptBox["S", "^"], "i"]}], " ", "+", 
+    RowBox[{
+     RowBox[{"\[Del]", 
+      SuperscriptBox[
+       OverscriptBox["\[CapitalPhi]", "^"], "i"]}], "\[SmallCircle]", 
+     RowBox[{"\[Del]", 
+      SubscriptBox[
+       OverscriptBox["S", "^"], "i"]}]}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.479707112962034*^9, 3.479707115936551*^9}, {
+  3.479707620151243*^9, 3.4797076218271217`*^9}, {3.479707713872594*^9, 
+  3.479707714717931*^9}}],
+
+Cell["\<\
+Here, the Del-symbol is the odd derivative D. The components of P is P= G + \
+\[Theta] 2 L, which can be can be seen by using ExpandSuperFields. This \
+returns a list, with the components, and their grading:\
+\>", "Text",
+ CellChangeTimes->{{3.479707803126986*^9, 3.479707813111459*^9}, {
+  3.4797084347190847`*^9, 3.4797084566560287`*^9}, {3.4797085165796947`*^9, 
+  3.479708623076408*^9}, {3.4797148011612177`*^9, 3.479714835634404*^9}, {
+  3.479727387324275*^9, 3.4797273876585417`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ExpandSuperFields", "[", "P", "]"}], "[", 
+   RowBox[{"[", "1", "]"}], "]"}], "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.479708627134104*^9, 3.479708662984605*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   SuperscriptBox[
+    OverscriptBox["c", "^"], "i"], "\[SmallCircle]", 
+   SubscriptBox[
+    OverscriptBox["\[Beta]", "^"], "i"], ")"}], "+", 
+  RowBox[{"(", 
+   RowBox[{"\[Square]", 
+    SuperscriptBox[
+     OverscriptBox["\[Gamma]", "^"], "i"]}], "\[SmallCircle]", 
+   SubscriptBox[
+    OverscriptBox["b", "^"], "i"], ")"}]}]], "Output",
+ CellChangeTimes->{3.492921149791533*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ExpandSuperFields", "[", "P", "]"}], "[", 
+   RowBox[{"[", "2", "]"}], "]"}], "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.479708656578204*^9, 3.479708685799505*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   RowBox[{"(", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "i"], "\[SmallCircle]", 
+    RowBox[{"\[Square]", 
+     SubscriptBox[
+      OverscriptBox["b", "^"], "i"]}], ")"}]}], "+", 
+  RowBox[{"(", 
+   RowBox[{"\[Square]", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "i"]}], "\[SmallCircle]", 
+   SubscriptBox[
+    OverscriptBox["b", "^"], "i"], ")"}], "+", 
+  RowBox[{"2", " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["\[Gamma]", "^"], "i"]}], "\[SmallCircle]", 
+    SubscriptBox[
+     OverscriptBox["\[Beta]", "^"], "i"], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.4929211498330307`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"%", "//", 
+  RowBox[{
+   RowBox[{"MapAt", "[", 
+    RowBox[{"NOCO", ",", "#", ",", "1"}], "]"}], "&"}]}]], "Input",
+ CellChangeTimes->{{3.479715201643269*^9, 3.479715284430567*^9}, {
+  3.4797153275829372`*^9, 3.479715330295665*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"\[Square]", 
+    SubscriptBox[
+     OverscriptBox["b", "^"], "i"]}], "\[SmallCircle]", 
+   SuperscriptBox[
+    OverscriptBox["c", "^"], "i"], ")"}], "+", 
+  RowBox[{"(", 
+   RowBox[{"\[Square]", 
+    SuperscriptBox[
+     OverscriptBox["c", "^"], "i"]}], "\[SmallCircle]", 
+   SubscriptBox[
+    OverscriptBox["b", "^"], "i"], ")"}], "+", 
+  RowBox[{"2", " ", 
+   RowBox[{"(", 
+    RowBox[{"\[Square]", 
+     SuperscriptBox[
+      OverscriptBox["\[Gamma]", "^"], "i"]}], "\[SmallCircle]", 
+    SubscriptBox[
+     OverscriptBox["\[Beta]", "^"], "i"], ")"}]}]}]], "Output",
+ CellChangeTimes->{3.492921149866941*^9}]
+}, Open  ]],
+
+Cell["\<\
+As expected, the field P fulfills the N=1 superconformal algebra, with \
+central charge c=3 dim, which is written \
+\>", "Text",
+ CellChangeTimes->{{3.479707823970108*^9, 3.4797078421921473`*^9}, {
+  3.479707891243474*^9, 3.479707970845109*^9}, {3.479708014469227*^9, 
+  3.479708024725383*^9}, {3.479708713905126*^9, 3.479708717175024*^9}, {
+  3.47971536030444*^9, 3.479715381816017*^9}}],
+
+Cell[TextData[{
+ "[P, P] = (2 \[PartialD] + \[Chi] D + \[Lambda] 3) P + dim",
+ Cell[BoxData[
+  RowBox[{" ", 
+   RowBox[{
+    SuperscriptBox["\[Lambda]", "2"], " ", "\[Chi]", " "}]}]],
+  CellChangeTimes->{{3.479707723959406*^9, 3.479707743621019*^9}}],
+ " ."
+}], "Text",
+ CellChangeTimes->{{3.479707978685429*^9, 3.479708089624155*^9}, {
+  3.4797081336637077`*^9, 3.479708135047284*^9}, {3.479709606348646*^9, 
+  3.479709614750161*^9}}],
+
+Cell["and calculated by", "Text",
+ CellChangeTimes->{{3.4797081419977713`*^9, 3.479708149529228*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[LeftAngleBracket]", 
+    RowBox[{"P", ",", "P"}], "\[RightAngleBracket]"}], "//", "CD"}], " ", "//", 
+  RowBox[{
+   RowBox[{"Collect", "[", 
+    RowBox[{"#", ",", 
+     RowBox[{"{", 
+      RowBox[{"\[Lambda]", ",", "\[Chi]"}], " ", "}"}], ",", "Simplify"}], 
+    "]"}], "&"}]}]], "Input",
+ CellChangeTimes->{{3.4797077409991913`*^9, 3.479707741830756*^9}, {
+  3.4797081983459682`*^9, 3.479708403601605*^9}, {3.479709620375491*^9, 
+  3.479709664280697*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"dim", " ", 
+   SuperscriptBox["\[Lambda]", "2"], " ", "\[Chi]"}], "+", 
+  RowBox[{"3", " ", "\[Lambda]", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"\[Del]", 
+       SuperscriptBox[
+        OverscriptBox["\[CapitalPhi]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+      
+      RowBox[{"\[Del]", 
+       SubscriptBox[
+        OverscriptBox["S", "^"], "\[Alpha]"]}], ")"}], "+", 
+     RowBox[{"(", 
+      RowBox[{"\[Square]", 
+       SuperscriptBox[
+        OverscriptBox["\[CapitalPhi]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+      
+      SubscriptBox[
+       OverscriptBox["S", "^"], "\[Alpha]"], ")"}]}], ")"}]}], "+", 
+  RowBox[{"\[Chi]", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"\[Del]", 
+      RowBox[{"(", 
+       RowBox[{"\[Del]", 
+        SuperscriptBox[
+         OverscriptBox["\[CapitalPhi]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+       RowBox[{"\[Del]", 
+        SubscriptBox[
+         OverscriptBox["S", "^"], "\[Alpha]"]}], ")"}]}], "+", 
+     RowBox[{"\[Del]", 
+      RowBox[{"(", 
+       RowBox[{"\[Square]", 
+        SuperscriptBox[
+         OverscriptBox["\[CapitalPhi]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+       SubscriptBox[
+        OverscriptBox["S", "^"], "\[Alpha]"], ")"}]}]}], ")"}]}], "+", 
+  RowBox[{"2", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"\[Square]", 
+      RowBox[{"(", 
+       RowBox[{"\[Del]", 
+        SuperscriptBox[
+         OverscriptBox["\[CapitalPhi]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+       RowBox[{"\[Del]", 
+        SubscriptBox[
+         OverscriptBox["S", "^"], "\[Alpha]"]}], ")"}]}], "+", 
+     RowBox[{"\[Square]", 
+      RowBox[{"(", 
+       RowBox[{"\[Square]", 
+        SuperscriptBox[
+         OverscriptBox["\[CapitalPhi]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+       SubscriptBox[
+        OverscriptBox["S", "^"], "\[Alpha]"], ")"}]}]}], ")"}]}]}]], "Output",\
+
+ CellChangeTimes->{3.492921151005512*^9}]
+}, Open  ]],
+
+Cell["\<\
+Now, let us extend this algebra to an N=2 superconformal algebra, by \
+introducing a constant 2-form \[Omega], and its inverse. We define the field \
+by\
+\>", "Text",
+ CellChangeTimes->{{3.4806581150786047`*^9, 3.480658230564659*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Grading", "[", 
+    RowBox[{"Field", "[", 
+     RowBox[{"\[Omega]", ",", "___"}], "]"}], "]"}], ":=", " ", "0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FieldAntiSymmetricLowerIndices", "[", "\[Omega]", "]"}], ":=", 
+   " ", "True"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FieldAntiSymmetricUpperIndices", "[", "\[Omega]", "]"}], ":=", 
+   " ", "True"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"CoordinateFunctionQ", "[", "\[Omega]", "]"}], ":=", "True"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.480655185229232*^9, 3.480655214404531*^9}, {
+  3.4806582055984287`*^9, 3.48065820606269*^9}}],
+
+Cell[TextData[{
+ "We use the same symbol for its inverse, with  ",
+ Cell[BoxData[
+  SubscriptBox[
+   OverscriptBox["\[Omega]", "^"], 
+   RowBox[{"i", " ", "j"}]]],
+  CellChangeTimes->{{3.480657976772511*^9, 3.480658077346113*^9}}],
+ "\[SmallCircle]",
+ Cell[BoxData[
+  RowBox[{
+   SuperscriptBox[
+    OverscriptBox["\[Omega]", "^"], 
+    RowBox[{"j", " ", "k"}]], "=", " "}]],
+  CellChangeTimes->{{3.480657976772511*^9, 3.480658077346113*^9}}],
+ Cell[BoxData[
+  SubsuperscriptBox[
+   OverscriptBox["\[Delta]", "^"], "i", "k"]],
+  CellChangeTimes->{3.480658312731978*^9}],
+ " . This is written"
+}], "Text",
+ CellChangeTimes->{{3.4806582410888653`*^9, 3.480658326935166*^9}, {
+  3.480659097911715*^9, 3.480659104971776*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"NormalOrder", "[", 
+    RowBox[{
+     RowBox[{"Field", "[", 
+      RowBox[{"\[Omega]", ",", 
+       RowBox[{"{", 
+        RowBox[{"a___", ",", "ind1_", ",", "b___"}], "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}]}], "]"}], ",", 
+     RowBox[{"Field", "[", 
+      RowBox[{"\[Omega]", ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"c___", ",", "ind1_", ",", "d___"}], "}"}], ",", " ", 
+       RowBox[{"{", "}"}]}], "]"}]}], "]"}], " ", ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"-", "1"}], ")"}], "^", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", " ", 
+       RowBox[{"Length", "[", 
+        RowBox[{"{", "a", "}"}], "]"}], "+", 
+       RowBox[{"Length", "[", 
+        RowBox[{"{", "c", "}"}], "]"}]}], ")"}]}], "*", 
+    RowBox[{"Field", "[", 
+     RowBox[{"\[Delta]", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", "d"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NormalOrder", "[", 
+    RowBox[{
+     RowBox[{"Field", "[", 
+      RowBox[{"\[Omega]", ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"c___", ",", "ind1_", ",", "d___"}], "}"}], ",", " ", 
+       RowBox[{"{", "}"}]}], "]"}], ",", 
+     RowBox[{"Field", "[", 
+      RowBox[{"\[Omega]", ",", 
+       RowBox[{"{", 
+        RowBox[{"a___", ",", "ind1_", ",", "b___"}], "}"}], ",", 
+       RowBox[{"{", "}"}], ",", 
+       RowBox[{"{", "}"}]}], "]"}]}], "]"}], " ", ":=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"-", "1"}], ")"}], "^", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", " ", 
+       RowBox[{"Length", "[", 
+        RowBox[{"{", "a", "}"}], "]"}], "+", 
+       RowBox[{"Length", "[", 
+        RowBox[{"{", "c", "}"}], "]"}]}], ")"}]}], "*", " ", 
+    RowBox[{"Field", "[", 
+     RowBox[{"\[Delta]", ",", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"c", ",", "d"}], "}"}], ",", 
+      RowBox[{"{", "}"}]}], "]"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.480655252631874*^9, 3.480655258903225*^9}, {
+  3.480655518366261*^9, 3.480655542132697*^9}, {3.480655601367725*^9, 
+  3.4806556313214073`*^9}, {3.4806572662919807`*^9, 3.480657280850666*^9}, {
+  3.480657310956752*^9, 3.480657312914876*^9}, {3.4806573595169773`*^9, 
+  3.4806573948624477`*^9}, {3.480657476871889*^9, 3.4806574812981997`*^9}, {
+  3.480657836817182*^9, 3.480657838136455*^9}, {3.48065833336406*^9, 
+  3.480658334332779*^9}}],
+
+Cell["\<\
+For simplicity, we choose \[Omega] to be constant, and write\
+\>", "Text",
+ CellChangeTimes->{{3.4806583402175617`*^9, 3.480658367329467*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Field", "[", 
+    RowBox[{"\[Omega]", ",", "_", ",", "_", ",", 
+     RowBox[{"{", "__", "}"}]}], "]"}], ":=", "0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"SD", "[", 
+    RowBox[{"Field", "[", 
+     RowBox[{"\[Omega]", ",", "___"}], "]"}], "]"}], ":=", "0"}], ";", 
+  RowBox[{
+   RowBox[{"TD", "[", 
+    RowBox[{"Field", "[", 
+     RowBox[{"\[Omega]", ",", "___"}], "]"}], "]"}], ":=", "0"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.4806603478936377`*^9, 3.4806603620337*^9}}],
+
+Cell["We now write our generator as", "Text",
+ CellChangeTimes->{{3.480658380547813*^9, 3.480658391088747*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"J", "=", 
+   RowBox[{
+    FractionBox["1", "2"], 
+    RowBox[{"(", " ", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox[
+        OverscriptBox["\[Omega]", "^"], 
+        RowBox[{"i", " ", "j"}]], "\[SmallCircle]", 
+       SubscriptBox[
+        OverscriptBox["S", "^"], "i"], "\[SmallCircle]", 
+       SubscriptBox[
+        OverscriptBox["S", "^"], "j"]}], "-", 
+      RowBox[{
+       SubscriptBox[
+        OverscriptBox["\[Omega]", "^"], 
+        RowBox[{"i", " ", "j"}]], " ", "\[SmallCircle]", 
+       RowBox[{"\[Del]", 
+        SuperscriptBox[
+         OverscriptBox["\[CapitalPhi]", "^"], "i"]}], "\[SmallCircle]", 
+       RowBox[{"\[Del]", 
+        SuperscriptBox[
+         OverscriptBox["\[CapitalPhi]", "^"], "j"]}]}]}], ")"}]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.480655264408866*^9, 3.480655346426243*^9}, {
+   3.480656795269658*^9, 3.480656795667906*^9}, {3.480656895576481*^9, 
+   3.4806569138467007`*^9}, 3.480657797821093*^9}],
+
+Cell["\<\
+J is a primary field with conformal dimension 2 with respect to P. \
+\>", "Text",
+ CellChangeTimes->{{3.4806584065760813`*^9, 3.480658423794677*^9}, {
+  3.4806584541796217`*^9, 3.480658472642932*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[LeftAngleBracket]", 
+        RowBox[{"P", ",", "J"}], "\[RightAngleBracket]"}], " ", "-", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2", " ", 
+          RowBox[{"\[Square]", "#"}]}], " ", "+", " ", 
+         RowBox[{"2", "\[Lambda]", " ", "#"}], " ", "+", " ", 
+         RowBox[{"\[Chi]", 
+          RowBox[{"\[Del]", "#"}]}]}], ")"}]}], "&"}], "@", " ", "J"}], " ", "//",
+     "ED"}], "//", "MDIC"}], "//", "Expand"}]], "Input",
+ CellChangeTimes->{3.4806580851163073`*^9}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.4929211512667093`*^9}]
+}, Open  ]],
+
+Cell["The algebra of J with itself is calculated by", "Text",
+ CellChangeTimes->{{3.480658558112574*^9, 3.480658571638463*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FixedPoint", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"#", "//", 
+          RowBox[{
+           RowBox[{"SortExpression", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"{", 
+              RowBox[{"\[Omega]", ",", "\[CapitalPhi]", ",", "S"}], "}"}]}], 
+            "]"}], "&"}]}], "//", "MNOC"}], "//", "ED"}], "//", 
+       "DoDeltaContractions"}], "//", "MDIC"}], ")"}], "&"}], ",", 
+   RowBox[{"\[LeftAngleBracket]", 
+    RowBox[{"J", ",", "J"}], "\[RightAngleBracket]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.480657530525235*^9, 3.4806576182228737`*^9}, {
+  3.4806576825959806`*^9, 3.4806577315878553`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"-", "dim"}], " ", "\[Lambda]", " ", "\[Chi]"}], "-", 
+  RowBox[{"(", 
+   RowBox[{"\[Del]", 
+    SuperscriptBox[
+     OverscriptBox["\[CapitalPhi]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+   RowBox[{"\[Del]", 
+    SubscriptBox[
+     OverscriptBox["S", "^"], "\[Alpha]"]}], ")"}], "-", 
+  RowBox[{"(", 
+   RowBox[{"\[Square]", 
+    SuperscriptBox[
+     OverscriptBox["\[CapitalPhi]", "^"], "\[Alpha]"]}], "\[SmallCircle]", 
+   SubscriptBox[
+    OverscriptBox["S", "^"], "\[Alpha]"], ")"}]}]], "Output",
+ CellChangeTimes->{3.492921151509904*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+PrintingStyleEnvironment->"Working",
+PageWidth->600,
+WindowSize->{924, 906},
+WindowMargins->{{364, Automatic}, {Automatic, 4}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+ShowSelection->True,
+FrontEndVersion->"7.0 for Mac OS X x86 (32-bit) (November 10, 2008)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 113, 1, 76, "Title"],
+Cell[683, 25, 960, 16, 116, "Text"],
+Cell[CellGroupData[{
+Cell[1668, 45, 75, 2, 27, "Input"],
+Cell[CellGroupData[{
+Cell[1768, 51, 159, 2, 36, "Print"],
+Cell[1930, 55, 103, 1, 20, "Print"]
+}, Open  ]]
+}, Open  ]],
+Cell[2060, 60, 271, 3, 26, "Text"],
+Cell[2334, 65, 82, 2, 27, "Input"],
+Cell[CellGroupData[{
+Cell[2441, 71, 112, 1, 46, "Subtitle"],
+Cell[2556, 74, 171, 4, 26, "Text"],
+Cell[2730, 80, 644, 16, 43, "Input"],
+Cell[3377, 98, 839, 15, 74, "Text"],
+Cell[CellGroupData[{
+Cell[4241, 117, 291, 7, 27, "Input"],
+Cell[4535, 126, 123, 3, 30, "Output"]
+}, Open  ]],
+Cell[4673, 132, 286, 7, 26, "Text"],
+Cell[4962, 141, 637, 11, 56, "Text"],
+Cell[5602, 154, 192, 5, 27, "Input"],
+Cell[5797, 161, 301, 6, 26, "Text"],
+Cell[6101, 169, 827, 23, 43, "Input"],
+Cell[6931, 194, 317, 6, 26, "Text"],
+Cell[7251, 202, 996, 29, 43, "Input"],
+Cell[8250, 233, 142, 2, 26, "Text"],
+Cell[8395, 237, 703, 21, 43, "Input"],
+Cell[9101, 260, 225, 4, 26, "Text"],
+Cell[9329, 266, 54, 0, 26, "Text"],
+Cell[9386, 268, 360, 10, 38, "Input"],
+Cell[9749, 280, 365, 7, 41, "Text"],
+Cell[CellGroupData[{
+Cell[10139, 291, 115, 2, 27, "Input"],
+Cell[10257, 295, 1037, 29, 47, "Output"]
+}, Open  ]],
+Cell[11309, 327, 217, 5, 26, "Text"],
+Cell[CellGroupData[{
+Cell[11551, 336, 117, 2, 27, "Input"],
+Cell[11671, 340, 764, 21, 47, "Output"]
+}, Open  ]],
+Cell[12450, 364, 634, 13, 63, "Text"],
+Cell[13087, 379, 822, 12, 71, "Text"],
+Cell[13912, 393, 148, 3, 27, "Input"],
+Cell[14063, 398, 793, 12, 56, "Text"],
+Cell[14859, 412, 218, 5, 27, "Input"],
+Cell[15080, 419, 61, 0, 26, "Text"],
+Cell[15144, 421, 758, 21, 46, "Input"],
+Cell[15905, 444, 147, 2, 26, "Text"],
+Cell[CellGroupData[{
+Cell[16077, 450, 286, 5, 27, "Input"],
+Cell[16366, 457, 2268, 71, 85, "Output"]
+}, Open  ]],
+Cell[18649, 531, 556, 9, 41, "Text"],
+Cell[CellGroupData[{
+Cell[19230, 544, 429, 11, 27, "Input"],
+Cell[19662, 557, 1194, 37, 49, "Output"]
+}, Open  ]],
+Cell[20871, 597, 301, 6, 41, "Text"],
+Cell[CellGroupData[{
+Cell[21197, 607, 158, 3, 27, "Input"],
+Cell[21358, 612, 70, 1, 27, "Output"]
+}, Open  ]],
+Cell[21443, 616, 129, 1, 26, "Text"],
+Cell[21575, 619, 231, 5, 27, "Input"],
+Cell[21809, 626, 243, 5, 26, "Text"],
+Cell[22055, 633, 657, 19, 38, "Input"],
+Cell[22715, 654, 137, 1, 26, "Text"],
+Cell[CellGroupData[{
+Cell[22877, 659, 365, 10, 27, "Input"],
+Cell[23245, 671, 1026, 30, 46, "Output"]
+}, Open  ]],
+Cell[24286, 704, 95, 1, 26, "Text"],
+Cell[CellGroupData[{
+Cell[24406, 709, 376, 10, 27, "Input"],
+Cell[24785, 721, 773, 23, 34, "Output"]
+}, Open  ]],
+Cell[25573, 747, 536, 10, 71, "Text"],
+Cell[CellGroupData[{
+Cell[26134, 761, 513, 15, 33, "Input"],
+Cell[26650, 778, 771, 23, 34, "Output"]
+}, Open  ]],
+Cell[27436, 804, 231, 5, 26, "Text"],
+Cell[27670, 811, 81, 2, 27, "Input"],
+Cell[27754, 815, 313, 6, 41, "Text"],
+Cell[28070, 823, 207, 5, 26, "Text"],
+Cell[28280, 830, 178, 2, 26, "Text"],
+Cell[28461, 834, 332, 8, 43, "Input"],
+Cell[28796, 844, 244, 5, 26, "Text"],
+Cell[29043, 851, 245, 3, 26, "Text"],
+Cell[29291, 856, 661, 19, 33, "Input"],
+Cell[29955, 877, 500, 8, 41, "Text"],
+Cell[CellGroupData[{
+Cell[30480, 889, 240, 6, 27, "Input"],
+Cell[30723, 897, 422, 13, 34, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[31182, 915, 240, 6, 27, "Input"],
+Cell[31425, 923, 689, 22, 34, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32151, 950, 256, 6, 27, "Input"],
+Cell[32410, 958, 663, 21, 34, "Output"]
+}, Open  ]],
+Cell[33088, 982, 398, 7, 41, "Text"],
+Cell[33489, 991, 435, 11, 29, "Text"],
+Cell[33927, 1004, 101, 1, 26, "Text"],
+Cell[CellGroupData[{
+Cell[34053, 1009, 505, 13, 27, "Input"],
+Cell[34561, 1024, 1956, 59, 56, "Output"]
+}, Open  ]],
+Cell[36532, 1086, 244, 5, 41, "Text"],
+Cell[36779, 1093, 719, 20, 73, "Input"],
+Cell[37501, 1115, 721, 21, 34, "Text"],
+Cell[38225, 1138, 2637, 73, 103, "Input"],
+Cell[40865, 1213, 152, 3, 26, "Text"],
+Cell[41020, 1218, 555, 17, 58, "Input"],
+Cell[41578, 1237, 111, 1, 26, "Text"],
+Cell[41692, 1240, 987, 28, 46, "Input"],
+Cell[42682, 1270, 210, 4, 26, "Text"],
+Cell[CellGroupData[{
+Cell[42917, 1278, 599, 17, 27, "Input"],
+Cell[43519, 1297, 72, 1, 27, "Output"]
+}, Open  ]],
+Cell[43606, 1301, 127, 1, 26, "Text"],
+Cell[CellGroupData[{
+Cell[43758, 1306, 735, 20, 58, "Input"],
+Cell[44496, 1328, 590, 17, 34, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -1,0 +1,16 @@
+Lambda
+A mathematica package designed for calculating λ-brackets
+in both vertex algebras, and in SUSY vertex algebras. 
+This is equivalent to calculating operator product 
+expansions in two-dimensional conformal field theory.
+
+
+Files in this directory:
+* Lambda.m Lambda package source file
+* Lambda.nb Notebook corresponding to Lambda.m
+* basicfields.m Contains basic field definitions
+* Example superconformal algebra.nb Contains examples of how to use Lambda
+* COPYING Contains the GNU general public license
+* README This file.
+
+For further information, consult http://arXiv.org/abs/1004.5264 .
