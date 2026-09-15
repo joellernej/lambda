@@ -295,6 +295,18 @@ Print["lambdabracketab:"];Print[lambdabracketab];
 (*	
 	Print["lambdabracketabc:"];Print[(lambdabracketabc)];
 *)	
+	(* Reduce higher powers of odd integration variable using \[Chi]^2 = -\[Lambda] *)
+	If[calcSUSY,
+		lambdabracketabc =
+			FixedPoint[
+				Expand[
+					# /. chiToIntegrateOver^n_Integer /; n >= 2 :>
+						(-lambdaToIntegrateOver)^Quotient[n, 2]*
+						chiToIntegrateOver^Mod[n, 2]
+				] &,
+				Expand[lambdabracketabc]
+			]
+	];
 (*If calcSUSY == True, then only chi-term *)
 	integralTerm =  Integrate[Coefficient[lambdabracketabc,chiToIntegrateOver,Boole[calcSUSY]]  , {lambdaToIntegrateOver,0,\[Lambda]}]//Expand;
 
